@@ -13,7 +13,7 @@ export function Footer() {
             </span>
 
             <span className="font-display font-semibold text-lg">
-              AI<span className="text-gradient">SmartLive</span>
+              AI<span className="text-gradient">SmartLive Solutions</span>
             </span>
           </Link>
 
