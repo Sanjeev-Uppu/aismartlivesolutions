@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Brain,
   Sparkles,
@@ -7,14 +7,25 @@ import {
   Video,
   PenTool,
   Mail,
+  ArrowUpRight,
+  ArrowLeft,
+  Clock3,
+  GraduationCap,
+  BadgeIndianRupee,
 } from "lucide-react";
+
+import { useState } from "react";
 
 const careers = [
   {
     icon: Brain,
     role: "AI/ML Intern",
     duration: "6 Months Internship",
-    stipend: "Performance-based stipend up to ₹10K/month",
+    stipend: "Up to ₹10K/month",
+    type: "Fresher Friendly",
+    gradient:
+      "from-cyan-400 via-blue-500 to-indigo-500",
+
     skills: [
       "Python",
       "Machine Learning",
@@ -22,29 +33,63 @@ const careers = [
       "TensorFlow",
       "Data Analysis",
     ],
+
+    short:
+      "Build intelligent AI systems.",
+
     description:
-      "Work on real-world AI models, intelligent automation systems, and predictive analytics solutions. Collaborate with experienced engineers and gain hands-on industry exposure.",
+      "Work on real-world AI models, automation systems, predictive analytics, and intelligent applications with experienced engineers.",
+
+    jd: [
+      "Build and train ML models",
+      "Work with datasets and preprocessing",
+      "Develop AI automation workflows",
+      "Collaborate with AI engineering team",
+      "Research modern AI technologies",
+    ],
   },
+
   {
     icon: Sparkles,
     role: "Generative AI Intern",
     duration: "6 Months Internship",
-    stipend: "Performance-based stipend up to ₹10K/month",
+    stipend: "Up to ₹10K/month",
+    type: "Fresher Friendly",
+    gradient:
+      "from-fuchsia-500 via-pink-500 to-rose-500",
+
     skills: [
       "LLMs",
-      "Prompt Engineering",
-      "OpenAI APIs",
       "LangChain",
       "RAG",
+      "Prompt Engineering",
+      "OpenAI APIs",
     ],
+
+    short:
+      "Create modern GenAI applications.",
+
     description:
-      "Build modern GenAI applications using large language models, AI agents, and intelligent workflows for enterprise solutions.",
+      "Build enterprise-grade AI assistants, AI agents, RAG systems, and modern GenAI workflows using LLM ecosystems.",
+
+    jd: [
+      "Build RAG pipelines",
+      "Integrate OpenAI APIs",
+      "Create AI agents",
+      "Prompt engineering",
+      "Optimize LLM workflows",
+    ],
   },
+
   {
     icon: Code2,
-    role: "Full Stack Developer Intern",
+    role: "Full Stack Intern",
     duration: "6 Months Internship",
-    stipend: "Performance-based stipend up to ₹10K/month",
+    stipend: "Up to ₹10K/month",
+    type: "Fresher Friendly",
+    gradient:
+      "from-emerald-400 via-green-500 to-lime-500",
+
     skills: [
       "React",
       "TypeScript",
@@ -52,156 +97,412 @@ const careers = [
       "MongoDB",
       "REST APIs",
     ],
+
+    short:
+      "Develop scalable AI platforms.",
+
     description:
-      "Develop scalable web applications, responsive user interfaces, and backend APIs while working on production-grade AI platforms.",
-  },
-  {
-    icon: BriefcaseBusiness,
-    role: "Business Associate",
-    duration: "6 Months Internship",
-    stipend: "Performance-based stipend up to ₹5K/month",
-    skills: [
-      "Communication",
-      "Marketing",
-      "Client Handling",
-      "Sales",
-      "Presentation Skills",
+      "Create production-grade full stack applications, APIs, dashboards, and modern interfaces for AI-driven products.",
+
+    jd: [
+      "Build frontend interfaces",
+      "Develop backend APIs",
+      "Database integration",
+      "Deploy scalable systems",
+      "Optimize application performance",
     ],
-    description:
-      "Support business growth through market research, client communication, partnerships, and operational coordination.",
   },
-  {
-    icon: Video,
-    role: "Video Editor",
-    duration: "6 Months Internship",
-    stipend: "Performance-based stipend up to ₹5K/month",
-    skills: [
-      "Premiere Pro",
-      "After Effects",
-      "Motion Graphics",
-      "Content Editing",
-      "Storytelling",
-    ],
-    description:
-      "Create engaging promotional videos, social media content, reels, and brand storytelling visuals for AISmartLive products.",
-  },
+
   {
     icon: PenTool,
     role: "UI/UX Designer",
     duration: "6 Months Internship",
-    stipend: "Performance-based stipend up to ₹10K/month",
+    stipend: "Up to ₹10K/month",
+    type: "Fresher Friendly",
+    gradient:
+      "from-orange-400 via-pink-500 to-rose-500",
+
     skills: [
       "Figma",
       "Wireframing",
-      "Prototyping",
       "Design Systems",
       "User Research",
+      "Prototyping",
     ],
+
+    short:
+      "Design next-level AI interfaces.",
+
     description:
-      "Design intuitive user experiences and modern interfaces for AI-driven web and mobile applications.",
+      "Craft premium UI/UX experiences and modern design systems for AI-driven web and mobile platforms.",
+
+    jd: [
+      "Design modern interfaces",
+      "Create design systems",
+      "Build interactive prototypes",
+      "Improve user experience",
+      "Collaborate with developers",
+    ],
   },
 ];
 
 export default function Careers() {
+  const [selectedRole, setSelectedRole] =
+    useState<(typeof careers)[0] | null>(null);
+
   return (
-    <section className="py-20 md:py-28 bg-background">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+    <section className="relative overflow-hidden py-20 sm:py-28">
 
-        {/* Heading */}
+      {/* Ambient Lights */}
+      <div className="absolute left-[10%] top-[10%] h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
+      <div className="absolute right-[10%] top-[30%] h-72 w-72 rounded-full bg-fuchsia-500/10 blur-[120px]" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+
+        {/* ================= HERO ================= */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{
+            duration: 0.7,
+          }}
+          className="text-center"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1 text-sm font-medium text-muted-foreground">
-            Careers at AISmartLive
-          </span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-xs text-white/70 backdrop-blur-xl sm:text-sm">
+            
+            <div className="h-2 w-2 rounded-full bg-emerald-400" />
 
-          <h2 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Start Your Career With{" "}
-            <span className="text-gradient">AISmartLive</span>
+            Careers at AISmartLive
+          </div>
+
+          <h2 className="mx-auto mt-7 max-w-5xl text-4xl font-black leading-tight text-white sm:text-6xl lg:text-7xl">
+            Start your
+            <span className="bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-lime-400 bg-clip-text text-transparent">
+              {" "}AI career{" "}
+            </span>
+            journey
           </h2>
 
-          <p className="mt-5 max-w-3xl mx-auto text-muted-foreground text-base md:text-lg leading-relaxed">
-            We are hiring passionate freshers and graduates who are eager
-            to learn, innovate, and build impactful AI-driven solutions.
-            Gain hands-on industry experience while working with modern
-            technologies and real-world projects.
+          <p className="mx-auto mt-7 max-w-3xl text-sm leading-8 text-white/70 sm:text-base md:text-lg">
+            Explore internship opportunities and gain real-world
+            experience building intelligent AI systems and products.
           </p>
         </motion.div>
 
-        {/* Career Cards */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {careers.map((career, index) => {
-            const Icon = career.icon;
+        {/* ================= CONTENT ================= */}
+        <AnimatePresence mode="wait">
 
-            return (
-              <motion.div
-                key={career.role}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="rounded-3xl border border-border bg-card p-7 shadow-lg hover:shadow-2xl transition-all duration-300"
-              >
-                {/* Icon */}
-                <div className="flex items-center justify-center h-14 w-14 rounded-2xl bg-primary/10 mb-5">
-                  <Icon className="h-7 w-7 text-primary" />
-                </div>
+          {!selectedRole ? (
 
-                {/* Role */}
-                <h3 className="text-2xl font-semibold">
-                  {career.role}
-                </h3>
+            /* ================= GRID ================= */
+            <motion.div
+              key="grid"
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: -20,
+              }}
+              className="mt-20 grid grid-cols-2 gap-4 md:grid-cols-2 xl:grid-cols-4"
+            >
 
-                {/* Internship Details */}
-                <div className="mt-3 space-y-1 text-sm text-muted-foreground">
-                  <p>{career.duration}</p>
-                  <p>{career.stipend}</p>
-                </div>
+              {careers.map((career, index) => {
+                const Icon = career.icon;
 
-                {/* Description */}
-                <p className="mt-5 text-muted-foreground leading-relaxed">
-                  {career.description}
-                </p>
+                return (
+                  <motion.div
+                    key={career.role}
+                    initial={{
+                      opacity: 0,
+                      y: 30,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.55,
+                      delay: index * 0.07,
+                    }}
+                    whileHover={{
+                      y: -5,
+                    }}
+                    className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.03] p-[1px]"
+                  >
 
-                {/* Skills */}
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {career.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+                    {/* Border */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${career.gradient} opacity-60`}
+                    />
 
-                {/* Email Section */}
-                <div className="mt-8 rounded-2xl border border-border bg-muted/30 p-4">
-                  <div className="flex items-start gap-3">
-                    <Mail className="h-5 w-5 text-primary mt-0.5" />
+                    {/* Inner */}
+                    <div className="relative h-full rounded-[25px] bg-[#050816]/95 p-4 sm:p-5">
 
-                    <div>
-                      <p className="font-medium">
-                        Interested in this role?
+                      {/* Glow */}
+                      <div
+                        className={`absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br ${career.gradient} opacity-20 blur-3xl`}
+                      />
+
+                      {/* Top */}
+                      <div className="relative flex items-start justify-between">
+
+                        {/* Icon */}
+                        <div
+                          className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${career.gradient}`}
+                        >
+                          <Icon className="h-6 w-6 text-white" />
+                        </div>
+
+                        {/* Arrow */}
+                        <button
+                          onClick={() =>
+                            setSelectedRole(career)
+                          }
+                          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] transition-all duration-300 hover:scale-105"
+                        >
+                          <ArrowUpRight className="h-5 w-5 text-white/80" />
+                        </button>
+                      </div>
+
+                      {/* Content */}
+                      <div className="relative mt-6">
+
+                        <h3 className="text-lg font-black leading-tight text-white sm:text-2xl">
+                          {career.role}
+                        </h3>
+
+                        <p className="mt-3 text-xs leading-6 text-white/70 sm:text-sm">
+                          {career.short}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+          ) : (
+
+            /* ================= DETAILS PAGE ================= */
+            <motion.div
+              key="details"
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: -20,
+              }}
+              transition={{
+                duration: 0.45,
+              }}
+              className="mx-auto mt-20 max-w-5xl"
+            >
+
+              <div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.03] p-[1px]">
+
+                {/* Border */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${selectedRole.gradient} opacity-60`}
+                />
+
+                {/* Inner */}
+                <div className="relative rounded-[35px] bg-[#050816]/95 p-6 sm:p-10">
+
+                  {/* Glow */}
+                  <div
+                    className={`absolute right-0 top-0 h-72 w-72 rounded-full bg-gradient-to-br ${selectedRole.gradient} opacity-20 blur-[120px]`}
+                  />
+
+                  {/* Back Button */}
+                  <button
+                    onClick={() =>
+                      setSelectedRole(null)
+                    }
+                    className="relative mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70 transition-all duration-300 hover:bg-white/[0.05]"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    Back
+                  </button>
+
+                  {/* Header */}
+                  <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+
+                    <div className="flex items-center gap-5">
+
+                      {/* Icon */}
+                      <div
+                        className={`flex h-20 w-20 items-center justify-center rounded-[28px] bg-gradient-to-br ${selectedRole.gradient}`}
+                      >
+                        <selectedRole.icon className="h-10 w-10 text-white" />
+                      </div>
+
+                      {/* Title */}
+                      <div>
+
+                        <h2 className="text-3xl font-black text-white sm:text-5xl">
+                          {selectedRole.role}
+                        </h2>
+
+                        <p className="mt-2 text-sm text-cyan-300 sm:text-base">
+                          {selectedRole.type}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Meta */}
+                  <div className="relative mt-10 grid gap-4 sm:grid-cols-3">
+
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                      <Clock3 className="h-5 w-5 text-cyan-300" />
+
+                      <p className="mt-3 text-sm text-white/60">
+                        Duration
                       </p>
 
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        Drop your resume to{" "}
-                        <span className="font-semibold text-foreground">
-                          future@aismartlive.com
+                      <h4 className="mt-1 text-lg font-bold text-white">
+                        {selectedRole.duration}
+                      </h4>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                      <BadgeIndianRupee className="h-5 w-5 text-lime-300" />
+
+                      <p className="mt-3 text-sm text-white/60">
+                        Stipend
+                      </p>
+
+                      <h4 className="mt-1 text-lg font-bold text-white">
+                        {selectedRole.stipend}
+                      </h4>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                      <GraduationCap className="h-5 w-5 text-fuchsia-300" />
+
+                      <p className="mt-3 text-sm text-white/60">
+                        Eligibility
+                      </p>
+
+                      <h4 className="mt-1 text-lg font-bold text-white">
+                        Freshers
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="relative mt-10">
+
+                    <h3 className="text-2xl font-bold text-white">
+                      Role Overview
+                    </h3>
+
+                    <p className="mt-5 text-base leading-8 text-white/70">
+                      {selectedRole.description}
+                    </p>
+                  </div>
+
+                  {/* JD */}
+                  <div className="relative mt-12">
+
+                    <h3 className="text-2xl font-bold text-white">
+                      Responsibilities
+                    </h3>
+
+                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
+
+                      {selectedRole.jd.map((item) => (
+                        <div
+                          key={item}
+                          className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4"
+                        >
+                          <div
+                            className={`h-3 w-3 rounded-full bg-gradient-to-br ${selectedRole.gradient}`}
+                          />
+
+                          <p className="text-sm text-white/75">
+                            {item}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="relative mt-12">
+
+                    <h3 className="text-2xl font-bold text-white">
+                      Required Skills
+                    </h3>
+
+                    <div className="mt-6 flex flex-wrap gap-3">
+
+                      {selectedRole.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/75"
+                        >
+                          {skill}
                         </span>
-                      </p>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Apply */}
+                  <div className="relative mt-14 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${selectedRole.gradient} opacity-10`}
+                    />
+
+                    <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+
+                      <div>
+                        <h3 className="text-2xl font-black text-white">
+                          Apply for this role
+                        </h3>
+
+                        <p className="mt-3 text-sm leading-7 text-white/70">
+                          Send your resume and portfolio to
+                        </p>
+
+                        <p className="mt-2 text-lg font-bold text-cyan-300">
+                          future@aismartlive.com
+                        </p>
+                      </div>
+
+                      <div
+                        className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${selectedRole.gradient}`}
+                      >
+                        <Mail className="h-8 w-8 text-white" />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            );
-          })}
-        </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
