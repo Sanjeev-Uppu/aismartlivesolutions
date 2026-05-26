@@ -175,7 +175,7 @@ function ContactPage() {
               variant="outline"
               className="gap-2 border-border"
             >
-              <a href="mailto:aismartlivesolutions5@gmail.com">
+              <a href="mailto:future@aismartlive.com">
                 <Mail className="h-4 w-4" />
                 Mail Us
               </a>
@@ -204,9 +204,9 @@ function ContactPage() {
                 Icon: Mail,
                 label: "Email",
                 value:
-                  "aismartlivesolutions5@gmail.com",
+                  "future@aismartlive.com",
                 link:
-                  "mailto:aismartlivesolutions5@gmail.com",
+                  "mailto:future@aismartlive.com",
               },
 
               {

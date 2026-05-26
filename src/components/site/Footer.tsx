@@ -37,7 +37,7 @@ export function Footer() {
             {/* Mail */}
             <div className="mt-5">
               <a
-                href="mailto:aismartlivesolutions5@gmail.com"
+                href="mailto:future@aismartlive.com"
                 aria-label="Mail"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/60 transition-colors"
               >
