@@ -17,39 +17,42 @@ export function ProductCard({
     <motion.article
       initial={{
         opacity: 0,
-        scale: 0.7,
+        x: 450,
+        scale: 0.9,
       }}
       animate={{
-        opacity: 1,
+        // VISIBILITY
+        opacity: [0, 1, 1, 1, 0],
 
-        // RIGHT → CENTER → HOLD → LEFT → RETURN
-        x: [350, 0, 0, -350, 0],
+        // RIGHT -> CENTER -> HOLD -> LEFT
+        x: [450, 0, 0, 0, -450],
 
-        // SMOOTH ORBIT CURVE
-        y: [40, -20, -20, 40, 0],
+        // FLOATING EFFECT
+        y: [20, -10, -10, -10, 20],
 
-        // 3D ROTATION
-        rotateY: [25, 0, 0, -25, 0],
-        rotateX: [8, 0, 0, 8, 0],
+        // 3D EFFECT
+        rotateY: [15, 0, 0, 0, -15],
 
-        scale: [0.8, 1, 1, 0.9, 1],
+        // SCALE
+        scale: [0.9, 1, 1, 1, 0.9],
       }}
       transition={{
         duration: 12,
 
-        // STOP AT CENTER FOR 2 SECONDS
-        times: [0, 0.25, 0.42, 0.75, 1],
+        // HOLD AT CENTER FOR 4 SECONDS
+        times: [0, 0.18, 0.55, 0.75, 1],
 
         repeat: Infinity,
-        ease: "easeInOut",
+        ease: "linear",
 
-        delay: index * 1.5,
+        // CARD BY CARD FLOW
+        delay: index * 2,
       }}
       whileHover={{
-        scale: 1.05,
+        scale: 1.04,
         y: -10,
         transition: {
-          duration: 0.3,
+          duration: 0.25,
         },
       }}
       style={{
@@ -61,26 +64,28 @@ export function ProductCard({
         group
         rounded-3xl
         overflow-hidden
-        h-full
+        w-full
+        max-w-[420px]
+        mx-auto
       "
     >
-      {/* MOVING GLOW */}
+      {/* ROTATING GLOW */}
       <motion.div
         animate={{
           rotate: 360,
         }}
         transition={{
-          duration: 10,
+          duration: 6,
           repeat: Infinity,
           ease: "linear",
         }}
         className="
           absolute
           -inset-2
-          rounded-[32px]
+          rounded-[34px]
           bg-gradient-to-r
           from-cyan-500
-          via-purple-500
+          via-violet-500
           to-pink-500
           opacity-30
           blur-2xl
@@ -91,26 +96,32 @@ export function ProductCard({
       <div
         className="
           relative
-          rounded-3xl
           overflow-hidden
+          rounded-3xl
           border
           border-white/10
           bg-black/55
-          backdrop-blur-xl
+          backdrop-blur-2xl
           transition-all
           duration-500
-          group-hover:border-cyan-400/60
-          group-hover:shadow-[0_0_70px_rgba(34,211,238,0.35)]
+          group-hover:border-cyan-400/50
+          group-hover:shadow-[0_0_80px_rgba(34,211,238,0.28)]
         "
       >
         {/* IMAGE */}
-        <div className="overflow-hidden w-full bg-black/20">
-          <img
+        <div className="relative overflow-hidden bg-black/20">
+          <motion.img
             src={image}
             alt={`${name} — ${tagline}`}
             width={800}
             height={600}
             loading="lazy"
+            whileHover={{
+              scale: 1.08,
+            }}
+            transition={{
+              duration: 0.5,
+            }}
             className="
               w-full
               h-[180px]
@@ -118,11 +129,11 @@ export function ProductCard({
               md:h-[250px]
               lg:h-[260px]
               object-cover
-              transition-transform
-              duration-700
-              group-hover:scale-110
             "
           />
+
+          {/* OVERLAY */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         </div>
 
         {/* CONTENT */}
@@ -137,17 +148,25 @@ export function ProductCard({
           "
         >
           {/* TAGLINE */}
-          <div
+          <motion.div
+            animate={{
+              opacity: [0.6, 1, 0.6],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              delay: index * 0.3,
+            }}
             className="
               text-[10px]
               sm:text-xs
               uppercase
-              tracking-[0.2em]
+              tracking-[0.22em]
               text-cyan-400
             "
           >
             {tagline}
-          </div>
+          </motion.div>
 
           {/* TITLE */}
           <h3
@@ -156,7 +175,8 @@ export function ProductCard({
               text-lg
               sm:text-xl
               md:text-2xl
-              font-bold
+              font-black
+              tracking-tight
               text-white
             "
           >
@@ -169,8 +189,8 @@ export function ProductCard({
               mt-3
               text-xs
               sm:text-sm
-              text-gray-300
               leading-relaxed
+              text-gray-300
             "
           >
             {description}
