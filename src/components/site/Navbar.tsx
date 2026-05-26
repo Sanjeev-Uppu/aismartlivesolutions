@@ -18,38 +18,42 @@ const nav = [
 ] as const;
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
+  // SCROLL EFFECT
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 8);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
     };
 
-    onScroll();
+    handleScroll();
 
-    window.addEventListener("scroll", onScroll, {
+    window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
     return () =>
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
   }, []);
 
-  // CLOSE MENU ON RESIZE
+  // CLOSE MENU ON DESKTOP
   useEffect(() => {
-    const handleResize = () => {
+    const resize = () => {
       if (window.innerWidth >= 768) {
         setOpen(false);
       }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", resize);
 
     return () =>
       window.removeEventListener(
         "resize",
-        handleResize
+        resize
       );
   }, []);
 
@@ -67,18 +71,29 @@ export function Navbar() {
           duration-300
           ${
             scrolled || open
-              ? "bg-black/75 backdrop-blur-2xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
-              : "bg-transparent"
+              ? "bg-black/80 backdrop-blur-2xl border-b border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.45)]"
+              : "bg-black/30 backdrop-blur-xl"
           }
         `}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
-
+        <div
+          className="
+            mx-auto
+            flex
+            h-16
+            max-w-7xl
+            items-center
+            justify-between
+            px-4
+            sm:px-6
+            lg:px-10
+          "
+        >
           {/* ================= LOGO ================= */}
           <Link
             to="/"
-            className="flex items-center gap-3"
             onClick={() => setOpen(false)}
+            className="flex items-center gap-3"
           >
             <img
               src={logo}
@@ -88,11 +103,11 @@ export function Navbar() {
                 w-10
                 rounded-xl
                 object-contain
-                shadow-[0_0_25px_rgba(140,69,255,0.45)]
+                shadow-[0_0_25px_rgba(139,92,246,0.55)]
               "
             />
 
-            <span
+            <h1
               className="
                 text-[15px]
                 sm:text-lg
@@ -103,14 +118,30 @@ export function Navbar() {
               "
             >
               AI
-              <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-pink-400 bg-clip-text text-transparent">
+              <span
+                className="
+                  bg-gradient-to-r
+                  from-cyan-400
+                  via-violet-400
+                  to-pink-400
+                  bg-clip-text
+                  text-transparent
+                "
+              >
                 SmartLive
               </span>
-            </span>
+            </h1>
           </Link>
 
           {/* ================= DESKTOP NAV ================= */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav
+            className="
+              hidden
+              md:flex
+              items-center
+              gap-2
+            "
+          >
             {nav.map((item) => (
               <Link
                 key={item.to}
@@ -120,10 +151,11 @@ export function Navbar() {
                   px-4
                   py-2
                   text-sm
+                  font-medium
                   text-white/70
                   transition-all
                   duration-300
-                  hover:bg-white/5
+                  hover:bg-white/10
                   hover:text-white
                 "
                 activeProps={{
@@ -140,7 +172,7 @@ export function Navbar() {
           </nav>
 
           {/* ================= DESKTOP BUTTON ================= */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex">
             <Link to="/contact">
               <Button
                 className="
@@ -149,6 +181,7 @@ export function Navbar() {
                   from-cyan-500
                   via-violet-500
                   to-pink-500
+                  px-5
                   text-white
                   shadow-[0_0_25px_rgba(168,85,247,0.45)]
                   transition-all
@@ -163,8 +196,8 @@ export function Navbar() {
 
           {/* ================= MOBILE TOGGLE ================= */}
           <button
-            aria-label="Toggle menu"
-            onClick={() => setOpen((prev) => !prev)}
+            aria-label="Toggle Menu"
+            onClick={() => setOpen(!open)}
             className="
               md:hidden
               flex
@@ -260,12 +293,19 @@ export function Navbar() {
                 md:hidden
                 border-t
                 border-white/10
-                bg-black/90
+                bg-black/95
                 backdrop-blur-2xl
               "
             >
-              <div className="flex flex-col px-5 py-5">
-
+              <div
+                className="
+                  flex
+                  flex-col
+                  gap-1
+                  px-5
+                  py-5
+                "
+              >
                 {nav.map((item, i) => (
                   <motion.div
                     key={item.to}
@@ -290,11 +330,12 @@ export function Navbar() {
                         rounded-xl
                         px-4
                         py-3
-                        text-sm
+                        text-[15px]
+                        font-medium
                         text-white/75
                         transition-all
                         duration-300
-                        hover:bg-white/5
+                        hover:bg-white/10
                         hover:text-white
                       "
                       activeProps={{
