@@ -8,7 +8,6 @@ import { CTA } from "@/components/site/CTA";
 import { products } from "@/lib/site-data";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-
 import Clients from "./clients";
 
 export const Route = createFileRoute("/")({
@@ -100,8 +99,13 @@ function Index() {
       {/* Clients Section */}
       <Clients />
 
+      
+
       {/* CTA Section */}
       <CTA />
+      
+      
+      
     </>
   );
 }
