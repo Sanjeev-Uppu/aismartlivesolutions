@@ -14,6 +14,7 @@ import rohitImg from "@/assets/team/rohit.png";
 import hemanthImg from "@/assets/team/hemanth.png";
 import sanjeevImg from "@/assets/team/sanjeev.png";
 import mohanImg from "@/assets/team/mohan.png";
+import eswarImg from "@/assets/team/eswar.png";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -77,6 +78,13 @@ const teamMembers = [
     role: "GenAI Engineer",
     image: sanjeevImg,
   },
+  {
+    name: "Eswar",
+    role: "GenAI Engineer",
+    image: eswarImg,
+  },
+
+
 ];
 
 function AboutPage() {
