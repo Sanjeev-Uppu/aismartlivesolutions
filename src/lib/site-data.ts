@@ -1,30 +1,51 @@
 import alankara from "@/assets/product-alankara.jpg";
-import astra from "@/assets/product-astravidya.jpg";
+ 
 import sense from "@/assets/product-senseminds.jpg";
 
 export const products = [
   {
-    name: "Alankara AI",
-    tagline: "Virtual Try-On",
-    description:
-      "AI-powered virtual jewellery try-on platform that brings showroom-grade realism to every device.",
-    image: alankara,
-  },
-  {
-    name: "AstraVidya AI",
-    tagline: "Smart Learning",
-    description:
-      "AI-powered educational learning platform for children — adaptive, joyful, and built for outcomes.",
-    image: astra,
-  },
-  {
     name: "SenseMinds 360",
-    tagline: "Intelligent Sensing",
+    tagline: "Enterprise Industrial Intelligence Platform",
+
     description:
-      "Intelligent sensing and monitoring automation system for plants, fleets, and smart facilities.",
+      "SenseMinds 360 is an enterprise-grade Industrial AI platform engineered for mission-critical operations. Built for modern manufacturing and industrial infrastructure, it transforms millions of sensor readings into trusted engineering intelligence through deterministic analytics, knowledge graphs, machine learning, grounded AI reasoning, and real-time monitoring. Designed with reliability, explainability, and scalability at its core, the platform empowers engineering teams to detect anomalies early, reduce downtime, optimize maintenance strategies, improve operational efficiency, and make faster data-driven decisions across the entire industrial ecosystem.",
+
     image: sense,
+
+    highlights: [
+      "Deterministic Engineering Analytics",
+      "Knowledge Graph Intelligence",
+      "Grounded Enterprise AI",
+      "Predictive Maintenance",
+      "Real-Time Monitoring",
+      "Machine Learning Insights",
+      "Explainable AI Decisions",
+      "Rule-Based Diagnostics",
+      "Continuous Health Analysis",
+      "Enterprise Dashboard",
+    ],
+
+    stats: [
+      {
+        value: "231+",
+        label: "Automated Tests",
+      },
+      {
+        value: "7",
+        label: "Analytics Engines",
+      },
+      {
+        value: "6",
+        label: "Industrial Machines",
+      },
+      {
+        value: "24×7",
+        label: "Continuous Analysis",
+      },
+    ],
   },
 ] as const;
+
 
 export const processSteps = [
   {

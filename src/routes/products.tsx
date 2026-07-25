@@ -7,14 +7,36 @@ import { products } from "@/lib/site-data";
 export const Route = createFileRoute("/products")({
   head: () => ({
     meta: [
-      { title: "Products — AISmartLive" },
-      { name: "description", content: "Explore Alankara AI, AstraVidya AI, and SenseMinds 360 — production-ready AI products from AISmartLive." },
-      { property: "og:title", content: "Products — AISmartLive" },
-      { property: "og:description", content: "A growing suite of AI products built for the enterprise." },
-      { property: "og:url", content: "/products" },
+      {
+        title: "Products — AISmartLive",
+      },
+      {
+        name: "description",
+        content:
+          "Explore Alankara AI, AstraVidya AI, and SenseMinds 360 — production-ready AI products from AISmartLive.",
+      },
+      {
+        property: "og:title",
+        content: "Products — AISmartLive",
+      },
+      {
+        property: "og:description",
+        content:
+          "A growing suite of AI products built for the enterprise.",
+      },
+      {
+        property: "og:url",
+        content: "/products",
+      },
     ],
-    links: [{ rel: "canonical", href: "/products" }],
+    links: [
+      {
+        rel: "canonical",
+        href: "/products",
+      },
+    ],
   }),
+
   component: ProductsPage,
 });
 
@@ -23,15 +45,24 @@ function ProductsPage() {
     <>
       <Section
         eyebrow="Our Products"
-        title={<>Intelligent products, <span className="text-gradient">production ready</span></>}
-        description="Each product is built on the same enterprise-grade foundation — secure, scalable, and easy to integrate."
+        title={
+          <>
+            Intelligent Products,{" "}
+            <span className="text-gradient">Production Ready</span>
+          </>
+        }
+        description="Each product is built on the same enterprise-grade foundation—secure, scalable, reliable, and designed for real-world deployment."
       >
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {products.map((p, i) => (
-            <ProductCard key={p.name} {...p} index={i} />
+        <div className="flex flex-col gap-16">
+          {products.map((product) => (
+            <ProductCard
+              key={product.name}
+              {...product}
+            />
           ))}
         </div>
       </Section>
+
       <CTA />
     </>
   );

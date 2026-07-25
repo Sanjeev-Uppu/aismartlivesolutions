@@ -7,143 +7,79 @@ export default function Clients() {
       id="clients"
       className="relative overflow-hidden py-20 md:py-28"
     >
-
-      {/* ================= AMBIENT LIGHTS ================= */}
+      {/* Ambient Lights */}
       <div className="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
-
       <div className="absolute right-[10%] top-[30%] h-72 w-72 rounded-full bg-fuchsia-500/10 blur-[120px]" />
 
-      {/* ================= CONTAINER ================= */}
-      <div className="mx-auto w-full max-w-[1900px] px-2 sm:px-4 lg:px-8">
-
-        {/* ================= TOP BADGE ================= */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Badge */}
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{
-            duration: 0.5,
-          }}
+          transition={{ duration: 0.5 }}
           className="flex justify-center"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-xs font-medium text-white/70 backdrop-blur-xl sm:text-sm">
-
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-medium text-white/70 backdrop-blur-xl sm:text-sm">
             <span className="h-2 w-2 rounded-full bg-cyan-400" />
-
             Trusted Partners
           </span>
         </motion.div>
 
-        {/* ================= HEADING ================= */}
+        {/* Heading */}
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{
-            duration: 0.6,
-          }}
-          className="mx-auto mt-7 mb-10 sm:mb-16 max-w-5xl text-center"
+          transition={{ duration: 0.6 }}
+          className="mx-auto mt-8 mb-12 max-w-5xl text-center"
         >
-          <h2 className="text-3xl font-black tracking-tight leading-tight text-white sm:text-5xl md:text-6xl">
-            Trusted by
+          <h2 className="text-3xl font-black leading-tight text-white sm:text-5xl md:text-6xl">
+            Trusted by{" "}
             <span className="bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-lime-400 bg-clip-text text-transparent">
-              {" "}Growing Brands{" "}
-            </span>
+              Growing Brands
+            </span>{" "}
             & Institutions
           </h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-white/70 sm:text-base md:text-lg md:leading-8">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-white/70">
             We collaborate with educational institutions,
-            healthcare brands, retail businesses,
-            and modern enterprises to build impactful
-            AI-powered digital solutions that drive growth.
+            healthcare brands, retail businesses, and modern
+            enterprises to build impactful AI-powered digital
+            solutions that drive real-world growth.
           </p>
         </motion.div>
 
-        {/* ================= CLIENTS SHOWCASE ================= */}
+        {/* Clients Image */}
         <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0.96,
-          }}
-          whileInView={{
-            opacity: 1,
-            scale: 1,
-          }}
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{
-            duration: 0.7,
-          }}
-          className="relative flex justify-center overflow-hidden rounded-[28px] sm:rounded-[40px]"
+          transition={{ duration: 0.7 }}
+          className="flex justify-center"
         >
-
-          {/* Glow */}
-          <div className="absolute inset-0 rounded-[28px] sm:rounded-[40px] bg-gradient-to-br from-cyan-500/10 via-fuchsia-500/10 to-lime-500/10 blur-3xl" />
-
-          {/* Wrapper */}
-          <div
+          <img
+            src={clients}
+            alt="Trusted Clients"
             className="
-              relative
               w-full
-              overflow-hidden
-              rounded-[28px]
-              sm:rounded-[40px]
+              max-w-[360px]
+              sm:max-w-[520px]
+              md:max-w-[760px]
+              lg:max-w-[1000px]
+              xl:max-w-[1200px]
 
-              border
-              border-white/10
+              h-auto
 
-              bg-white
+              rounded-3xl
 
-              p-0
+              shadow-[0_30px_80px_rgba(0,0,0,0.35)]
 
-              backdrop-blur-xl
+              transition-transform
+              duration-500
+              hover:scale-[1.02]
             "
-          >
-
-            {/* IMAGE */}
-            <img
-              src={clients}
-              alt="Trusted Clients"
-              className="
-                w-full
-
-                h-auto
-
-                min-h-[520px]
-                sm:min-h-[700px]
-                md:min-h-[850px]
-                lg:min-h-[950px]
-
-                object-cover
-
-                rounded-[24px]
-                sm:rounded-[32px]
-
-                bg-white
-
-                shadow-[0_40px_120px_rgba(0,0,0,0.55)]
-
-                transition-all
-                duration-700
-                hover:scale-[1.01]
-              "
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-          </div>
+          />
         </motion.div>
       </div>
     </section>

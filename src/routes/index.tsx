@@ -13,7 +13,9 @@ import Clients from "./clients";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AISmartLive — Next-Gen AI Solutions for Enterprise" },
+      {
+        title: "AISmartLive — Next-Gen AI Solutions for Enterprise",
+      },
       {
         name: "description",
         content:
@@ -26,21 +28,31 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "We craft intelligent products like Sense Minds 360, Alankara AI, and AstraVidya AI.",
+          "We craft intelligent products like SenseMinds 360, Alankara AI, and AstraVidya AI.",
       },
-      { property: "og:url", content: "/" },
+      {
+        property: "og:url",
+        content: "/",
+      },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      {
+        rel: "canonical",
+        href: "/",
+      },
+    ],
   }),
+
   component: Index,
 });
 
 function Index() {
   return (
     <>
+      {/* Hero */}
       <Hero />
 
-      {/* Products Section */}
+      {/* Products */}
       <Section
         id="products"
         eyebrow="Our Products"
@@ -52,23 +64,23 @@ function Index() {
         }
         description="A growing suite of AI products powering retail, education, and intelligent sensing."
       >
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {products.map((p, i) => (
-            <ProductCard key={p.name} {...p} index={i} />
-          ))}
+        {/* Featured Product */}
+        <div className="space-y-16">
+          <ProductCard {...products[0]} />
         </div>
 
-        <div className="mt-10">
+        {/* Button */}
+        <div className="mt-12 flex justify-center">
           <Link to="/products">
-            <Button variant="outline" className="gap-2">
-              All products
-              <ArrowRight className="h-4 w-4" />
+            <Button size="lg" className="gap-2">
+              View All Products
+              <ArrowRight className="h-5 w-5" />
             </Button>
           </Link>
         </div>
       </Section>
 
-      {/* Process Section */}
+      {/* Process */}
       <Section
         eyebrow="Our Process"
         title={
@@ -82,7 +94,7 @@ function Index() {
         <ProcessTimeline />
       </Section>
 
-      {/* Features Section */}
+      {/* Features */}
       <Section
         eyebrow="Why AISmartLive"
         title={
@@ -96,16 +108,11 @@ function Index() {
         <FeatureGrid />
       </Section>
 
-      {/* Clients Section */}
+      {/* Clients */}
       <Clients />
 
-      
-
-      {/* CTA Section */}
+      {/* CTA */}
       <CTA />
-      
-      
-      
     </>
   );
 }
