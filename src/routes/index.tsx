@@ -73,7 +73,7 @@ function Index() {
         <div className="mt-12 flex justify-center">
           <Link to="/products">
             <Button size="lg" className="gap-2">
-              View All Products
+              Explore More
               <ArrowRight className="h-5 w-5" />
             </Button>
           </Link>

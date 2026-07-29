@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { ProductCard } from "@/components/site/ProductCard";
+import { ProductDetails } from "@/components/site/ProductDetails";
 import { CTA } from "@/components/site/CTA";
 import { products } from "@/lib/site-data";
 
@@ -8,21 +8,21 @@ export const Route = createFileRoute("/products")({
   head: () => ({
     meta: [
       {
-        title: "Products — AISmartLive",
+        title: "SenseMinds 360 — AISmartLive",
       },
       {
         name: "description",
         content:
-          "Explore Alankara AI, AstraVidya AI, and SenseMinds 360 — production-ready AI products from AISmartLive.",
+          "Explore SenseMinds 360, an enterprise-grade Industrial AI Intelligence Platform for predictive maintenance, industrial safety, AI analytics, and real-time monitoring.",
       },
       {
         property: "og:title",
-        content: "Products — AISmartLive",
+        content: "SenseMinds 360 — AISmartLive",
       },
       {
         property: "og:description",
         content:
-          "A growing suite of AI products built for the enterprise.",
+          "Enterprise Industrial Intelligence Platform powered by AI.",
       },
       {
         property: "og:url",
@@ -43,24 +43,14 @@ export const Route = createFileRoute("/products")({
 function ProductsPage() {
   return (
     <>
-      <Section
-        eyebrow="Our Products"
-        title={
-          <>
-            Intelligent Products,{" "}
-            <span className="text-gradient">Production Ready</span>
-          </>
-        }
-        description="Each product is built on the same enterprise-grade foundation—secure, scalable, reliable, and designed for real-world deployment."
-      >
-        <div className="flex flex-col gap-16">
-          {products.map((product) => (
-            <ProductCard
-              key={product.name}
-              {...product}
-            />
-          ))}
-        </div>
+      <Section>
+
+        <ProductDetails
+          name={products[0].name}
+          tagline={products[0].tagline}
+          description={products[0].description}
+        />
+
       </Section>
 
       <CTA />
