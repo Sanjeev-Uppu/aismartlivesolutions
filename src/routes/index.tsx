@@ -10,6 +10,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Clients from "./clients";
 
+// SenseMinds brochure / product image
+import senseBro from "@/assets/sensebro.png";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -67,9 +70,22 @@ function Index() {
         {/* Featured Product */}
         <div className="space-y-16">
           <ProductCard {...products[0]} />
+
+          {/* SenseMinds 360 Product Brochure */}
+          <div className="mx-auto w-full max-w-6xl">
+            <div className="overflow-hidden rounded-2xl border border-border/60 bg-background shadow-xl">
+              <img
+                src={senseBro}
+                alt="SenseMinds 360 AI-Powered Industrial Predictive Maintenance and Smart Monitoring Platform"
+                className="block h-auto w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Button */}
+        {/* Explore More Button */}
         <div className="mt-12 flex justify-center">
           <Link to="/products">
             <Button size="lg" className="gap-2">

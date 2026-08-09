@@ -8,7 +8,7 @@ export const products = [
     tagline: "Enterprise Industrial Intelligence Platform",
 
     description:
-      "SenseMinds 360 is an enterprise-grade Industrial AI platform engineered for mission-critical operations. Built for modern manufacturing and industrial infrastructure, it transforms millions of sensor readings into trusted engineering intelligence through deterministic analytics, knowledge graphs, machine learning, grounded AI reasoning, and real-time monitoring. Designed with reliability, explainability, and scalability at its core, the platform empowers engineering teams to detect anomalies early, reduce downtime, optimize maintenance strategies, improve operational efficiency, and make faster data-driven decisions across the entire industrial ecosystem.",
+      "SenseMinds 360 represents the next generation of industrial intelligence by unifying predictive maintenance, industrial safety, and explainable AI into one intelligent platform that continuously monitors critical assets and gas detection systems in real time. It predicts equipment failures before they impact production, explains alerts using verified sensor and engineering data, identifies root causes, assesses severity, and recommends precise maintenance actions. By integrating with existing PLCs, SCADA, IoT gateways, sensors, and gas analyzers without hardware replacement, it provides unified plant visibility, reduces downtime, improves asset reliability, strengthens worker safety, detects hazardous gas leaks early, and delivers AI-powered insights that enable faster, smarter, evidence-based industrial decision making.",
 
     image: sense,
 
