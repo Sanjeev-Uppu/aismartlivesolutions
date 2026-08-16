@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Hero } from "@/components/site/Hero";
 import { Section } from "@/components/site/Section";
 import { ProductCard } from "@/components/site/ProductCard";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
@@ -10,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Clients from "./clients";
 
-// SenseMinds brochure / product image
+import homeImg from "@/assets/home.png";
 import senseBro from "@/assets/sensebro.png";
 
 export const Route = createFileRoute("/")({
@@ -52,10 +51,26 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
-      {/* Hero */}
-      <Hero />
+      {/* =====================================================
+          HOME / HERO IMAGE
+          Large centered card - responsive and no overflow
+          ===================================================== */}
+      <section className="w-full px-4 py-6 sm:px-6 md:py-8 lg:px-8 lg:py-10">
+  <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-border/60 bg-background shadow-2xl">
+    <img
+      src={homeImg}
+      alt="AISmartLive — Next-Generation AI Solutions"
+      className="block h-auto w-full object-contain"
+      loading="eager"
+      fetchPriority="high"
+      decoding="async"
+    />
+  </div>
+</section>
 
-      {/* Products */}
+      {/* =====================================================
+          PRODUCTS
+          ===================================================== */}
       <Section
         id="products"
         eyebrow="Our Products"
@@ -67,8 +82,8 @@ function Index() {
         }
         description="A growing suite of AI products powering retail, education, and intelligent sensing."
       >
-        {/* Featured Product */}
         <div className="space-y-16">
+          {/* Featured Product */}
           <ProductCard {...products[0]} />
 
           {/* SenseMinds 360 Product Brochure */}
@@ -96,7 +111,9 @@ function Index() {
         </div>
       </Section>
 
-      {/* Process */}
+      {/* =====================================================
+          PROCESS
+          ===================================================== */}
       <Section
         eyebrow="Our Process"
         title={
@@ -110,7 +127,9 @@ function Index() {
         <ProcessTimeline />
       </Section>
 
-      {/* Features */}
+      {/* =====================================================
+          FEATURES
+          ===================================================== */}
       <Section
         eyebrow="Why AISmartLive"
         title={
@@ -124,10 +143,14 @@ function Index() {
         <FeatureGrid />
       </Section>
 
-      {/* Clients */}
+      {/* =====================================================
+          CLIENTS
+          ===================================================== */}
       <Clients />
 
-      {/* CTA */}
+      {/* =====================================================
+          CTA
+          ===================================================== */}
       <CTA />
     </>
   );
